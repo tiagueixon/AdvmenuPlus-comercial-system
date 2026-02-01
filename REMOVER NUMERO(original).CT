@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CheatTable CheatEngineTableVersion="46">
+  <Forms>
+    <CETrainer Class="TTrainerForm" Encoding="Ascii85">=N!Zk,cpq{$xr}vB:,R5:[Mym.+-WR:=hRa6;7=w9Ffk=B?;8+C5_9M1434kV[)BB*Kl-Bj@Cl?oC+;YDJij@ASVJ==zi7!zg/KKfFv58-cJ(a@Mddp._tUEn%%vCTnarfdOpdgGok,n@n?,-iv#0bo^5=M?!*{ziu^VWtPq?0Xgh:OA^ksHNq7!jyc9VrdL7//m+%7pEt.,N8!+FVl/_AV$H%{LO2mG;hcKn?X1O3REL[S.0/HQZebYILSeaK+.KL:0Q%+=XN/[k}zzyCKURDI*;.7.3*Bb5MPBA4J0)Rnh?sj33^%FQt/c+yq9M^:u+;18LP]PRb07$w.xFFQ;-X}*xa=ZU#Ie{Z8GQ+,yw17QKtN+M4xgvB[$g6/n/SJlm!bzr1!/E:Mz3Z.D;=p!q=gluWPdQr@8A1u3gghf$I^:50sJki!TMSl0uwuI]im:uY*+jat^dYt7lNHa^I@yIq_BTF/^6fZoNZ^sP(p2KWSQW@$*mK(R]uZAJ;LAX*679fNv6c1Y/ODoZ2fmC.tJow^HsANbp_YK@b;n}#0[M2NEH9=-HLG2J(?5Z!Rxv3Mdc*beQVTj9a:ajABngm_6]A)?i9(UXe1R+G#7jal^V)vKavidCRgOt2kX/iHrg$IKJCEi_sj+ssc1l}*O,gW,117N-$XN,iIhw8B4QIkuqE?R@D75OWQfpfy0Oc_kY-uW4jTU%HjL^#=8+jHj]aeoh,NMAq0VN0,3r/8jlR(@qWD77VseQIw-+b^$qR+TnoiSOJj8xG5O_x#P]0=H@*dHHh/SNOhomp}e0gP{hmHbO+99N9?%un^sd*UuAyE/t7Z8r#GZ)Fr)Z^F.+nf=tt?*]fyB#)JNlDDb/2[DG[Aa,l,U!e,E,6JCWkRF}[+bvWadI--I4bZ4N7GEfVy-9h[3bNajH?gGu8?Q]0wYts$o*BvLVe-58A#etp]C*C@?vzRzYKr{]*l_:CVotu.DnKnu1Ukf^GcR[;qbM1L:UcGZk6}YQu-?gR=0]Mk?8]!;C2mzyC%9YHq).c=6/3OR]kj4GGU^3S8_::oo6QV,@;c;ZJ.T{#XtdvH^zubHy{9i*,j?IjZR:ap4Ezr</CETrainer>
+  </Forms>
+  <CheatEntries>
+    <CheatEntry>
+      <ID>0</ID>
+      <Description>"Remover Numero"</Description>
+      <VariableType>Auto Assembler Script</VariableType>
+      <AssemblerScript>[ENABLE]
+// 1. O SALTO: Impede que o MAME reescreva o número a cada frame
+00A3C7BD:
+jmp 00A3C7F8
+nop
+nop
+nop
+nop
+
+// 2. A LIMPEZA: Apaga o que já está escrito no endereço da string
+// Preenche 30 bytes com o valor 0 (null) no endereço inicial da string
+027D4BA0:
+db 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+
+[DISABLE]
+// Restaura a instrução original de escrita
+00A3C7BD:
+db C7 05 A0 4B 7D 02 4D 75 6C 00
+
+// Nota: A string não precisa ser restaurada manualmente aqui,
+// pois o próprio MAME voltará a escrevê-la assim que o 'jmp' for removido.
+</AssemblerScript>
+    </CheatEntry>
+  </CheatEntries>
+  <CheatCodes>
+    <CodeEntry>
+      <Description>Code :mov [mameui32.exe+23D4BA0],mameui32.exe+2C754D</Description>
+      <AddressString>mameui32.exe+63C7BD</AddressString>
+      <Before>
+        <Byte>E8</Byte>
+        <Byte>53</Byte>
+        <Byte>92</Byte>
+        <Byte>75</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>C7</Byte>
+        <Byte>05</Byte>
+        <Byte>A0</Byte>
+        <Byte>4B</Byte>
+        <Byte>7D</Byte>
+        <Byte>02</Byte>
+        <Byte>4D</Byte>
+        <Byte>75</Byte>
+        <Byte>6C</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>C7</Byte>
+        <Byte>05</Byte>
+        <Byte>AB</Byte>
+        <Byte>4B</Byte>
+        <Byte>7D</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :mov [mameui32.exe+23D4BAB],00202D20</Description>
+      <AddressString>mameui32.exe+63C7C7</AddressString>
+      <Before>
+        <Byte>90</Byte>
+        <Byte>90</Byte>
+        <Byte>90</Byte>
+        <Byte>90</Byte>
+        <Byte>90</Byte>
+      </Before>
+      <Actual>
+        <Byte>C7</Byte>
+        <Byte>05</Byte>
+        <Byte>AB</Byte>
+        <Byte>4B</Byte>
+        <Byte>7D</Byte>
+        <Byte>02</Byte>
+        <Byte>20</Byte>
+        <Byte>2D</Byte>
+        <Byte>20</Byte>
+        <Byte>00</Byte>
+      </Actual>
+      <After>
+        <Byte>C7</Byte>
+        <Byte>05</Byte>
+        <Byte>B6</Byte>
+        <Byte>4B</Byte>
+        <Byte>7D</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :mov [mameui32.exe+23D4BA3],nvgpucomp32.dll+E76974</Description>
+      <AddressString>mameui32.exe+63C7DB</AddressString>
+      <Before>
+        <Byte>02</Byte>
+        <Byte>36</Byte>
+        <Byte>2D</Byte>
+        <Byte>35</Byte>
+        <Byte>00</Byte>
+      </Before>
+      <Actual>
+        <Byte>C7</Byte>
+        <Byte>05</Byte>
+        <Byte>A3</Byte>
+        <Byte>4B</Byte>
+        <Byte>7D</Byte>
+        <Byte>02</Byte>
+        <Byte>74</Byte>
+        <Byte>69</Byte>
+        <Byte>61</Byte>
+        <Byte>72</Byte>
+      </Actual>
+      <After>
+        <Byte>C7</Byte>
+        <Byte>05</Byte>
+        <Byte>A7</Byte>
+        <Byte>4B</Byte>
+        <Byte>7D</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :mov [mameui32.exe+23D4BA7],65646163</Description>
+      <AddressString>mameui32.exe+63C7E5</AddressString>
+      <Before>
+        <Byte>90</Byte>
+        <Byte>90</Byte>
+        <Byte>90</Byte>
+        <Byte>90</Byte>
+        <Byte>90</Byte>
+      </Before>
+      <Actual>
+        <Byte>C7</Byte>
+        <Byte>05</Byte>
+        <Byte>A7</Byte>
+        <Byte>4B</Byte>
+        <Byte>7D</Byte>
+        <Byte>02</Byte>
+        <Byte>63</Byte>
+        <Byte>61</Byte>
+        <Byte>64</Byte>
+        <Byte>65</Byte>
+      </Actual>
+      <After>
+        <Byte>66</Byte>
+        <Byte>C7</Byte>
+        <Byte>05</Byte>
+        <Byte>AE</Byte>
+        <Byte>4B</Byte>
+      </After>
+    </CodeEntry>
+    <CodeEntry>
+      <Description>Code :mov word ptr [mameui32.exe+23D4BAE],3228</Description>
+      <AddressString>mameui32.exe+63C7EF</AddressString>
+      <Before>
+        <Byte>90</Byte>
+        <Byte>90</Byte>
+        <Byte>90</Byte>
+        <Byte>90</Byte>
+        <Byte>90</Byte>
+      </Before>
+      <Actual>
+        <Byte>66</Byte>
+        <Byte>C7</Byte>
+        <Byte>05</Byte>
+        <Byte>AE</Byte>
+        <Byte>4B</Byte>
+        <Byte>7D</Byte>
+        <Byte>02</Byte>
+        <Byte>28</Byte>
+        <Byte>32</Byte>
+      </Actual>
+      <After>
+        <Byte>66</Byte>
+        <Byte>C7</Byte>
+        <Byte>05</Byte>
+        <Byte>B0</Byte>
+        <Byte>4B</Byte>
+      </After>
+    </CodeEntry>
+  </CheatCodes>
+  <UserdefinedSymbols/>
+  <LuaScript>-- Nome do processo que o trainer deve procurar
+local processName = "mameui32.exe"
+
+-- Função que tenta anexar ao processo e ativar o cheat
+local function autoAttach()
+  if getProcessIDFromProcessName(processName) ~= nil then
+    openProcess(processName)
+
+    -- Substitua '0' pelo índice do seu script na lista (geralmente é 0 se for o primeiro)
+    -- Isso ativa o script de salto e limpeza automaticamente
+    getAddressList().getMemoryRecord(0).Active = true
+    -- Se quiser que o trainer feche após ativar, descomente a linha abaixo:
+    -- closeCE()
+  end
+end
+
+-- Cria um timer que verifica a cada 1 segundo (1000ms) se o MAME abriu
+local t = createTimer(nil)
+t.Interval = 1000
+t.OnTimer = autoAttach
+
+</LuaScript>
+</CheatTable>
